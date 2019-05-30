@@ -1,35 +1,45 @@
-import React from 'react'
+import React from 'react';
 import Navbar from './components/Navbar';
 import MainContent from './MainContent';
 import Footer from './components/Footer';
-import todoData from './components/todoData';
+import todoData from './todoData';
 
 
 
-function App(){
-
-  const styles = {
-    color: "#696969",
-    margin: 50,
-    textAlign: "center"
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      todos: todoData
+    }
   }
-  const TodoComponents = todoData.map(item => <MainContent key = {item.id} item = {item}/>)
+
+  render(){
+      const styles = {
+        color: "#696969",
+        margin: 50,
+        textAlign: "center"
+      }
+      const TodoComponents = this.state.todos.map(item => <MainContent key = {item.id} item = {item}/>)
 
 
-  return(
-    <div>
-      <Navbar/>
+      return(
+        <div>
+          <Navbar/>
 
 
-      <h2 style = {styles}> TO DO LIST </h2>
-      <div className= "list">
-        {TodoComponents}
-      </div>
+          <h2 style = {styles}> TO DO LIST </h2>
+          <div className= "list">
+            {TodoComponents}
+          </div>
 
-      <Footer/>
-    </div>
-  )
-}
+          <Footer/>
+        </div>
+      )
+    }
+  }
+
+
 
 
 
