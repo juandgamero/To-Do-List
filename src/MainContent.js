@@ -1,5 +1,5 @@
 import React from 'react';
-import todoData from './components/todoData';
+import todoData from './todoData';
 
 function MainContent(props){
   return(
