@@ -7,11 +7,28 @@ import todoData from './todoData';
 
 
 class App extends React.Component {
+
   constructor(){
     super()
     this.state = {
       todos: todoData
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(id){
+     this.setState((prevState)=> {
+       const changedTodos = prevState.todos.map((todo) => {
+         if(todo.id === id){
+           todo.completed = !todo.completed
+         }
+         return todo
+       })
+       return {
+         todos: changedTodos
+       }
+
+    })
   }
 
   render(){
@@ -20,7 +37,7 @@ class App extends React.Component {
         margin: 50,
         textAlign: "center"
       }
-      const TodoComponents = this.state.todos.map(item => <MainContent key = {item.id} item = {item}/>)
+      const TodoComponents = this.state.todos.map(item => <MainContent key = {item.id} item = {item} handleChange = {this.handleChange}/>)
 
 
       return(
